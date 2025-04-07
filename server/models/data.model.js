@@ -23,4 +23,6 @@ const dataSchema = new mongoose.Schema({
     }
 });
 
+dataSchema.index({ temp: 1, ppm: 1 });
+
 module.exports = mongoose.model('Data', dataSchema);
