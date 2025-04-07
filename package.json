@@ -4,8 +4,8 @@
   "description": "Air quality monitoring application with a black and orange theme",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "dev": "nodemon server/server.js"
+    "start": "nodemon server/server.js",
+    "dev": "node server/server.js"
   },
   "author": "Vivekanandreddy-Kunta",
   "license": "ISC",
