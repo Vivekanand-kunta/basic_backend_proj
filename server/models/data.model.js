@@ -23,9 +23,13 @@ const dataSchema = new mongoose.Schema({
     }
 });
 
-
+// Add compound index for frequent queries (e.g., filtering by temp, ppm, and sorting by createdAt)
 dataSchema.index({ temp: 1, ppm: 1, createdAt: -1 });
 
+// Optional: Add text index for name searches
 dataSchema.index({ name: 'text' });
+
+// Set buffer timeout to 30 seconds to match server connection settings
+dataSchema.set('bufferTimeoutMS', 30000);
 
 module.exports = mongoose.model('Data', dataSchema);

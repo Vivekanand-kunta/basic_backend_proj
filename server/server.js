@@ -9,21 +9,26 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public'))); // Serve all static files from public
 
-// MongoDB Connection with retry and increased timeout
+// MongoDB Connection with supported options
 const uri = "mongodb+srv://vivekanandreddy:P0lRGWxRdThxB9Nz@backendproject.tacxulh.mongodb.net/?retryWrites=true&w=majority&appName=Backend";
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  }).then(() => console.log('Connected to MongoDB'))
+    serverSelectionTimeoutMS: 30000, // 30 seconds to select server
+    socketTimeoutMS: 45000, // 45 seconds for socket operations
+    // Removed deprecated options: autoReconnect, reconnectTries, reconnectInterval, bufferMaxEntries
+})
+    .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Initial connection error:', err));
 
 mongoose.connection.on('disconnected', () => {
     console.log('MongoDB disconnected. Attempting to reconnect...');
 });
 
-mongoose.connection.on('reconnected', () => {
-    console.log('MongoDB reconnected');
-});
+// Note: 'reconnected' event is not directly supported in newer drivers; use connection state monitoring if needed
+// mongoose.connection.on('reconnected', () => {
+//     console.log('MongoDB reconnected');
+// });
 
 const dataRoutes = require('./routes/data.routes');
 app.use('/api/data', dataRoutes);
