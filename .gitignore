@@ -1,3 +1,4 @@
-/node_modules
-/.env
-/basic_backend_git_token
+node_modules/
+.env
+basic_backend_git_token/
+*.log
