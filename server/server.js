@@ -11,7 +11,7 @@ app.use('/project', express.static(path.join(__dirname, '../public/project')));
 app.use('/javascript', express.static(path.join(__dirname, '../public/javascript')));
 app.use('/css', express.static(path.join(__dirname, '../public/css')));
 
-const uri = process.env.MONGO_URI || "mongodb+srv://vivekanandreddy:P0lRGWxRdThxB9Nz@backendproject.tacxulh.mongodb.net/?retryWrites=true&w=majority&appName=Backend";
+const uri = process.env.MONGO_URI;
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
