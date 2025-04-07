@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
     }
     const newData = new Data({ name, temp, ppm, comfort });
     try {
-        const savedData = await newData.save({ timeout: 30000 }); // Set save timeout to 30 seconds
+        const savedData = await newData.save({ timeout: 60000 }); 
         res.status(201).json(savedData);
     } catch (err) {
         console.error('Error saving data:', err);
@@ -20,9 +20,9 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const data = await Data.find()
-            .limit(50) // Restrict to 50 items to improve performance
-            .sort({ createdAt: -1 }) // Sort by most recent
-            .setOptions({ maxTimeMS: 10000 }); // Query timeout of 10 seconds
+            .limit(50) 
+            .sort({ createdAt: -1 }) 
+            .setOptions({ maxTimeMS: 60000 }); 
         res.json(data);
     } catch (err) {
         console.error('Error fetching data:', err);
@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const data = await Data.findById(req.params.id)
-            .setOptions({ maxTimeMS: 10000 }); // Query timeout of 10 seconds
+            .setOptions({ maxTimeMS: 60000 }); 
         if (!data) return res.status(404).json({ error: 'Data not found' });
         res.json(data);
     } catch (err) {
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
         const data = await Data.findByIdAndUpdate(
             req.params.id,
             { name, temp, ppm, comfort },
-            { new: true, runValidators: true, timeout: 30000 } // Update timeout to 30 seconds
+            { new: true, runValidators: true, timeout: 60000 } 
         );
         if (!data) return res.status(404).json({ error: 'Data not found' });
         res.json(data);
@@ -64,7 +64,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const data = await Data.findByIdAndDelete(req.params.id)
-            .setOptions({ maxTimeMS: 10000 }); // Query timeout of 10 seconds
+            .setOptions({ maxTimeMS: 60000 }); 
         if (!data) return res.status(404).json({ error: 'Data not found' });
         res.json({ message: 'Data deleted successfully' });
     } catch (err) {
