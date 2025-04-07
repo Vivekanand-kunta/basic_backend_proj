@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data List - Air Quality</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Air Quality Data</h1>
+        <nav>
+            <a href="/project/index.html">Home</a>
+            <a href="/project/data.html">Data</a>
+        </nav>
+    </header>
+    <main>
+        <div id="data-list"></div>
+        <form id="add-data-form">
+            <input type="text" id="name-input" placeholder="Location Name" required>
+            <input type="number" id="temp-input" placeholder="Temp (°C)" step="0.1" required>
+            <input type="number" id="ppm-input" placeholder="PPM" required>
+            <input type="text" id="comfort-input" placeholder="Comfort Level" required>
+            <button type="submit">Add Data</button>
+        </form>
+    </main>
+    <script src="/javascript/data.js"></script>
+</body>
+</html>

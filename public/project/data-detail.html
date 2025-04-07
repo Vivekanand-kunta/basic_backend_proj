@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Detail - Air Quality</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Data Detail</h1>
+        <nav>
+            <a href="/project/index.html">Home</a>
+            <a href="/project/data.html">Data</a>
+        </nav>
+    </header>
+    <main>
+        <div id="data-detail"></div>
+        <button id="update-btn">Update Data</button>
+        <button id="delete-btn">Delete Data</button>
+        <div id="update-form-container" style="display: none;">
+            <form id="update-form">
+                <input type="text" id="name-input" placeholder="Location Name" required>
+                <input type="number" id="temp-input" placeholder="Temp (°C)" step="0.1" required>
+                <input type="number" id="ppm-input" placeholder="PPM" required>
+                <input type="text" id="comfort-input" placeholder="Comfort Level" required>
+                <button type="submit">Save Changes</button>
+                <button type="button" id="cancel-btn">Cancel</button>
+            </form>
+        </div>
+    </main>
+    <script src="/javascript/data-detail.js"></script>
+</body>
+</html>

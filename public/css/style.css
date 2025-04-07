@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #1a1a1a; 
+    color: #ffffff; 
+}
+
+header {
+    background-color: #ff4b2b; 
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: #ffffff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #ffd700; 
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #2b2b2b; 
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#data-list, #data-detail {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #3c3c3c; 
+    color: #ffffff;
+    border: 1px solid #ff4b2b;
+    border-radius: 3px;
+}
+
+button {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #ff4b2b; 
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e04325;
+}
+
+.cube {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #3c3c3c; 
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.cube:hover {
+    transform: scale(1.05);
+    background-color: #ff4b2b; 
+}
+
+#update-form-container {
+    margin-top: 20px;
+    padding: 15px;
+    background: #3c3c3c;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#update-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+#update-form input {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #4a4a4a; 
+    color: #ffffff;
+    border: 1px solid #ff4b2b;
+    border-radius: 3px;
+}
+
+#update-form button {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #ff4b2b;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+#update-form button:hover {
+    background-color: #e04325;
+}
+
+#cancel-btn {
+    background-color: #666666; 
+}
+
+#cancel-btn:hover {
+    background-color: #888888;
+}
