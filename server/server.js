@@ -5,22 +5,30 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../public'))); 
+app.use(express.static(path.join(__dirname, '../public'))); // Serve all static files from public
 
-const uri = process.env.MONGO_URI;
+// MongoDB Connection with retry and increased timeout
+const uri = "mongodb+srv://vivekanandreddy:P0lRGWxRdThxB9Nz@backendproject.tacxulh.mongodb.net/?retryWrites=true&w=majority&appName=Backend";
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 40000, 
-    socketTimeoutMS: 45000 
-})
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('Connection error:', err));
+  }).then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Initial connection error:', err));
+
+mongoose.connection.on('disconnected', () => {
+    console.log('MongoDB disconnected. Attempting to reconnect...');
+});
+
+mongoose.connection.on('reconnected', () => {
+    console.log('MongoDB reconnected');
+});
 
 const dataRoutes = require('./routes/data.routes');
 app.use('/api/data', dataRoutes);
 
+// Serve HTML pages
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/project/index.html'));
 });
@@ -33,6 +41,7 @@ app.get('/data/:id', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/project/data-detail.html'));
 });
 
+// Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ error: 'Something went wrong!' });

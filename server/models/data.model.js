@@ -23,6 +23,9 @@ const dataSchema = new mongoose.Schema({
     }
 });
 
-dataSchema.index({ temp: 1, ppm: 1 });
+
+dataSchema.index({ temp: 1, ppm: 1, createdAt: -1 });
+
+dataSchema.index({ name: 'text' });
 
 module.exports = mongoose.model('Data', dataSchema);

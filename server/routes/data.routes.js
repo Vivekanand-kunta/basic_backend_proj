@@ -19,11 +19,15 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const data = await Data.find().limit(100).sort({ createdAt: -1 }); 
+        // Limit results and add timeout option
+        const data = await Data.find()
+            .limit(100) // Restrict to 100 items
+            .sort({ createdAt: -1 }) // Sort by recent
+            .setOptions({ maxTimeMS: 5000 }); // Set query timeout to 5 seconds
         res.json(data);
     } catch (err) {
         console.error('Error fetching data:', err);
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message.includes('timed out') ? 'Query timed out' : err.message });
     }
 });
 
